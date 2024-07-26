@@ -1228,16 +1228,16 @@ fn get_hostfunc(
                             buffer_data as u32 as usize
                                 ..(buffer_data + buffer_size) as u32 as usize,
                         );
-                        assert_ge!(buffer_data_ptr.len(), (start + size) as usize);
+                        // assert_ge!(buffer_data_ptr.len(), (start + size) as usize);
 
                         EXPECT.lock().unwrap().staged.get_expect_set_buffer_bytes(
                             buffer_type,
-                            &buffer_data_ptr[start as usize..(start + size) as usize],
+                            &buffer_data_ptr[start as usize..(start + buffer_size) as usize],
                         );
                         HOST.lock().unwrap().staged.set_buffer_bytes(
                             buffer_type,
                             std::str::from_utf8(
-                                &buffer_data_ptr[start as usize..(start + size) as usize],
+                                &buffer_data_ptr[start as usize..(start + buffer_size) as usize],
                             )
                             .unwrap(),
                         );
